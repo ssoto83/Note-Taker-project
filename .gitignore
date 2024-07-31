@@ -131,3 +131,6 @@ dist
 
 # ignore
 node_modules
+
+# ignore
+package-lock.json
