@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const fs = require('fs');
-// const { v4: uuidv4 } = require('uuid');
+
 
 // Initialize express
 const app = express();
@@ -13,9 +13,11 @@ app.use(express.urlencoded({extended: true }));
 app.use(express.static('public'));
 
 //file path to store notes
-const notesFilePath = path.join(__dirname, 'db',  'db_json');
+const notesFilePath = path.join(__dirname, 'db',  'db.json');
 
-const generateId = () => '_' + Math.random().toString(36).substr(2, 9);
+const generateId = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+};
 
 // To get the notes
 app.get('/api/notes', (req, res) => {
@@ -62,7 +64,7 @@ app.delete('/api/notes/:id', (req, res) => {
             res.status(500).json({ error: 'Failed to read notes.' });
         } else {
             let notes = JSON.parse(data);
-            notes = notes.filter(note => noteId);
+            notes = notes.filter(note => note.id !== noteId);
 
             fs.writeFile(notesFilePath, JSON.stringify(notes, null, 2), (err) => {
                 if (err) {
