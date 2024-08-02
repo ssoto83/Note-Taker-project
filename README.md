@@ -1,5 +1,5 @@
 # Note-Taker-project
-This application can be used to write, save notes and delete once completed. It uses an Express.js back end that saves and retrieve note data from a JSON file. 
+This application can be used to write, save, and delete notes as needed. It uses an Express.js back end that saves and retrieve note data from a JSON file. 
 
 ## Deployed URL  
 https://note-taker-project-ptxg.onrender.com
